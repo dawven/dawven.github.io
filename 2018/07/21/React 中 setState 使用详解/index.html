@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="react," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="React 中 setState 使用的注意事项有哪些，下面就是实战案例，一起来看一下。 抛出问题123456789101112131415161718192021222324252627282930313233class Example extends Component &amp;#123;  contructor () &amp;#123;    super()    this.state = &amp;#123;">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React 中 setState 使用详解">
+<meta property="og:url" content="https://dawven.github.io/2018/07/21/React 中 setState 使用详解/index.html">
+<meta property="og:site_name" content="雯风未动">
+<meta property="og:description" content="React 中 setState 使用的注意事项有哪些，下面就是实战案例，一起来看一下。 抛出问题123456789101112131415161718192021222324252627282930313233class Example extends Component &amp;#123;  contructor () &amp;#123;    super()    this.state = &amp;#123;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.php.cn/upload/article/000/061/021/e98f921b8f164094719418c36ddc190f-0.png">
+<meta property="og:updated_time" content="2018-09-04T13:52:48.001Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React 中 setState 使用详解">
+<meta name="twitter:description" content="React 中 setState 使用的注意事项有哪些，下面就是实战案例，一起来看一下。 抛出问题123456789101112131415161718192021222324252627282930313233class Example extends Component &amp;#123;  contructor () &amp;#123;    super()    this.state = &amp;#123;">
+<meta name="twitter:image" content="http://img.php.cn/upload/article/000/061/021/e98f921b8f164094719418c36ddc190f-0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dawven.github.io/2018/07/21/React 中 setState 使用详解/"/>
+
+
+
+
+
+  <title>React 中 setState 使用详解 | 雯风未动</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">雯风未动</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dawven.github.io/2018/07/21/React 中 setState 使用详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="dawven">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="雯风未动">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">React 中 setState 使用详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-21T10:54:21+08:00">
+                2018-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>React 中 setState 使用的<a href="http://www.php.cn/code/10182.html" target="_blank" rel="noopener">注意事项</a>有哪些，下面就是实战案例，一起来看一下。</p>
+<h2 id="抛出问题"><a href="#抛出问题" class="headerlink" title="抛出问题"></a>抛出问题</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  contructor () &#123;</span><br><span class="line">    <span class="keyword">super</span>()</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      value: <span class="number">0</span>,</span><br><span class="line">      index: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount () &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: <span class="keyword">this</span>.state.value + <span class="number">1</span>&#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.state.value) <span class="comment">// 第一次输出</span></span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: <span class="keyword">this</span>.state.value + <span class="number">1</span>&#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.state.value) <span class="comment">// 第二次输出</span></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: <span class="keyword">this</span>.state.value + <span class="number">1</span>&#125;)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.state.value) <span class="comment">// 第三次输出</span></span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: <span class="keyword">this</span>.state.value + <span class="number">1</span>&#125;)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.state.value) <span class="comment">// 第四次输出</span></span><br><span class="line">    &#125;, <span class="number">0</span>)；</span><br><span class="line">        <span class="keyword">this</span>.refs.button.addEventListener(<span class="string">'click'</span>, <span class="keyword">this</span>.click)</span><br><span class="line">  &#125;</span><br><span class="line">  click = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: <span class="keyword">this</span>.state.index + <span class="number">1</span>&#125;)</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: <span class="keyword">this</span>.state.index + <span class="number">1</span>&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;p&gt;&lt;span&gt;value: &#123;this.state.value&#125;index: &#123;this.props.index&#125;&lt;/span&gt;</span><br><span class="line">        &lt;button ref=<span class="string">"button"</span> onClick=&#123;<span class="keyword">this</span>.click&#125;&gt;点击&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>p&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>这四次输出，按常理来说分别是: 1，2，3，4。但是，实际输出为: 0, 0, 2, 3</li>
+</ul>
+<h2 id="setState-的注意点"><a href="#setState-的注意点" class="headerlink" title="setState 的注意点"></a>setState 的注意点</h2><ol>
+<li>setState 不会立刻改变 React 组件中 state 的值（即 setState 是异步更新）</li>
+</ol>
+<ul>
+<li><p>setState 通过一个队列机制实现 state 更新；</p>
+</li>
+<li><p>当执行 setState 时，会将需要更新的 state 合并后放入状态队列，而不会立即更新，队列可以高效的批量更新 state；</p>
+</li>
+<li><p>通过 this.state 直接修改的值，state 不会放入状态队列，当下次调用 setState 并对状态队列进行合并时，会忽略之前直接被修改的 state.</p>
+</li>
+</ul>
+<ol start="3">
+<li>setState 通过引发一次组件的更新过程来引发重新绘制</li>
+</ol>
+<ul>
+<li><p>此处重绘指的就是引起 React 的更新<a href="http://www.php.cn/php/php-tp-being.html" target="_blank" rel="noopener">生命周期</a>函数 4 个函数：</p>
+</li>
+<li><p>shouldComponentUpdate（被调用时 this.state 没有更新；如果返回了 false，生命周期被中断，虽然不调用之后的函数了，但是 state 仍然会被更新）</p>
+</li>
+<li><p>componentWillUpdate（被调用时 this.state 没有更新）</p>
+</li>
+<li><p>render（被调用时 this.state 得到更新）</p>
+</li>
+<li><p>componentDidUpdate</p>
+</li>
+</ul>
+<ol start="5">
+<li>多个相邻的 state 的修改可能会合并到一起一次执行</li>
+</ol>
+<pre> this.setState({name: 'Pororo'})
+ this.setState({age: 20})</pre>
+
+<ul>
+<li>等同于</li>
+</ul>
+<pre> this.setState({name: 'Pororo'，age: 20})</pre>
+
+<ul>
+<li>上面两块代码的效果是一样的。如果每次调用都引发一次生命周期更新，那性能就会消耗很大了。所以，React 会将多个 this.setState 产生的修改放进一个队列里，等差不多的时候就会引发一次生命周期更新。</li>
+</ul>
+<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><ul>
+<li><strong>对于前两次 setState：</strong></li>
+</ul>
+<pre>this.setState({value: this.state.val + 1});
+console.log(this.state.value); // 第一次输出
+this.setState({value: this.state.val + 1});
+console.log(this.state.value); // 第二次输出</pre>
+
+<ul>
+<li><p>由于 setState 不会立即改变 React 组件中 state 的值，所以两次 setState 中 this.state.value 都是同一个值 0，故而，这两次输出都是 0。因而 value 只被加 1。</p>
+</li>
+<li><p>既然这样，那么是不是可以直接操作 this.state 呢？比如：<code>this.state.value=this.state.value+1;</code></p>
+</li>
+<li><p>这样的确可以修改 this.state.value 的状态但是却不可以引发重复渲染。</p>
+</li>
+<li><p>所以，就必须通过 React 设定的 setState 函数去改变 this.state，从而引发重新渲染。</p>
+</li>
+<li><p><strong>setTimeout 里面的两次 setState：</strong></p>
+</li>
+</ul>
+<pre>setTimeout(() => {
+  this.setState({value: this.state.value + 1})
+  console.log(this.state.value) // 第三次输出
+  this.setState({value: this.state.value + 1})
+  console.log(this.state.value) // 第四次输出
+}, 0)；</pre>
+
+<ul>
+<li><p>这两次 this.state 的值同步更新了;</p>
+</li>
+<li><p><strong>同步更新：</strong>是由 React 引发的<a href="http://www.php.cn/code/5688.html" target="_blank" rel="noopener">事件处理</a>（比如：onClick 引发的事件处理），调用 setState 会异步更新 this.state；</p>
+</li>
+<li><p><strong>异步更新：</strong>除此之外的 setState 调用会同步执行 this.setState。 “除此之外” 指的是：绕过 React 通过 addEventListener 直接添加的事件处理函数和 setTimeout/setInterval 产生的异步调用。</p>
+</li>
+<li><p>this.setState 更新机制图解：</p>
+</li>
+</ul>
+<p><img src="http://img.php.cn/upload/article/000/061/021/e98f921b8f164094719418c36ddc190f-0.png" alt=""></p>
+<ul>
+<li><p>每次 setState 产生新的 state 会依次被存入一个队列，然后会根据 isBathingUpdates 变量判断是直接更新 this.state 还是放进 dirtyComponent 里回头再说。</p>
+</li>
+<li><p>isBatchingUpdates 默认是 false，也就表示 setState 会同步更新 this.state。</p>
+</li>
+<li><p>但是，当 React 在调用事件处理函数之前就会调用 batchedUpdates，这个函数会把 isBatchingUpdates 修改为 true，造成的后果就是由 React 控制的事件处理过程 setState 不会同步更新 this.state。</p>
+</li>
+</ul>
+<h2 id="同步更新（函数式-setState）"><a href="#同步更新（函数式-setState）" class="headerlink" title="同步更新（函数式 setState）"></a>同步更新（函数式 setState）</h2><ol>
+<li><p>如果 this.setState 的参数不是一个<a href="http://www.php.cn/wiki/60.html" target="_blank" rel="noopener">对象</a>而是一个函数时，这个函数会接收到两个参数，第一个是当前的 state 值，第二个是当前的 props，这个函数应该返回一个对象，这个对象代表想要对 this.state 的更改；</p>
+</li>
+<li><p>换句话说，之前你想给 this.setState 传递什么对象参数，在这种函数里就返回什么对象。不过，计算这个对象的方法有些改变，不再依赖于 this.state，而是依赖于输入参数 state。</p>
+</li>
+</ol>
+<pre>function increment(state, props) {
+  return {count: state.count + 1};
+}
+function incrementMultiple() {
+  this.setState(increment);
+  this.setState(increment);
+  this.setState(increment);
+}</pre>
+
+<ul>
+<li><p>假如当前 this.state.count 的值是 0，第一次调用 this.setState(increment)，传给 increment 的 state 参数是 0，第二调用时，state 参数是 1，第三次调用是，参数是 2，最终 incrementMultiple 让 this.state.count 变成了 3。</p>
+</li>
+<li><p>对于多次调用函数式 setState 的情况，React 会保证调用每次 increment 时，state 都已经合并了之前的状态修改结果。</p>
+</li>
+</ul>
+<blockquote>
+<p>要注意的是，在 increment 函数被调用时，this.state 并没有被改变，依然，要等到 render 函数被重新执行时（或者 shouldComponentUpdate 函数返回 false 之后）才被改变。</p>
+</blockquote>
+<h2 id="同步异步-setState-的用法混合"><a href="#同步异步-setState-的用法混合" class="headerlink" title="同步异步 setState 的用法混合"></a>同步异步 setState 的用法混合</h2><pre>function incrementMultiple() {
+  this.setState(increment);
+  this.setState(increment);
+  this.setState({count: this.state.count + 1});
+  this.setState(increment);
+}</pre>
+
+<ul>
+<li><p>在几个函数式 setState 调用中插入一个传统式 setState 调用，最后得到的结果是让 this.state.count 增加了 2，而不是增加 4。</p>
+</li>
+<li><p>这是因为 React 会依次合并所有 setState 产生的效果，虽然前两个函数式 setState 调用产生的效果是 count 加 2，但是中间出现一个传统式 setState 调用，一下子强行把积攒的效果清空，用 count 加 1 取代。</p>
+</li>
+<li><p>所以，传统式 setState 与函数式 setState 一定不要混用。</p>
+</li>
+</ul>
+<p>以上就是 React 中 setState 使用详解的详细内容，更多请关注 php 中文网其它相关文章！<br>本文原创发布 php 中文网 ，转载请注明出处，感谢您的尊重！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/20/doctype（文档类型）的作用是什么/" rel="next" title="doctype（文档类型）的作用是什么">
+                <i class="fa fa-chevron-left"></i> doctype（文档类型）的作用是什么
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/04/前端-简历/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="dawven" />
+          <p class="site-author-name" itemprop="name">dawven</p>
+           
+              <p class="site-description motion-element" itemprop="description">谈不上的迷茫</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#抛出问题"><span class="nav-number">1.</span> <span class="nav-text">抛出问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setState-的注意点"><span class="nav-number">2.</span> <span class="nav-text">setState 的注意点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题分析"><span class="nav-number">3.</span> <span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步更新（函数式-setState）"><span class="nav-number">4.</span> <span class="nav-text">同步更新（函数式 setState）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步异步-setState-的用法混合"><span class="nav-number">5.</span> <span class="nav-text">同步异步 setState 的用法混合</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dawven</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
