@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="react," />
 
 
 
@@ -94,16 +94,31 @@
 
 
 
-<meta name="description" content="谈不上的迷茫">
-<meta property="og:type" content="website">
-<meta property="og:title" content="雯风未动">
-<meta property="og:url" content="https://dawven.github.io/index.html">
+<meta name="description" content="前言 本文基于 react 16.3- 版本，所讨论的都是老版本的生命周期函数。  React 作为一个视图框架，速度已经很快了，并且在 React16 新推出的 Fiber 架构中，通过时间切片及高优先级任务中断来尽快相应用户的操作。尽管如此，React 也并不能揣测出开发者真正的意图，如果开发者的代码没有遵循最佳实践，就容易造成性能上的负担。 高效渲染React 在内部维护了一套虚拟 DOM（">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React 高效渲染策略">
+<meta property="og:url" content="https://dawven.github.io/2019/02/18/React 高效渲染策略/index.html">
 <meta property="og:site_name" content="雯风未动">
-<meta property="og:description" content="谈不上的迷茫">
+<meta property="og:description" content="前言 本文基于 react 16.3- 版本，所讨论的都是老版本的生命周期函数。  React 作为一个视图框架，速度已经很快了，并且在 React16 新推出的 Fiber 架构中，通过时间切片及高优先级任务中断来尽快相应用户的操作。尽管如此，React 也并不能揣测出开发者真正的意图，如果开发者的代码没有遵循最佳实践，就容易造成性能上的负担。 高效渲染React 在内部维护了一套虚拟 DOM（">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://camo.githubusercontent.com/b21b1fd1a8b918b3753adce52f19a891f9875203/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323030302f312a4e6e44466d6c765362393965556c50436f716b3951672e706e67">
+<meta property="og:image" content="https://user-images.githubusercontent.com/12322740/39393234-57506faa-4af5-11e8-8838-f9ed660f86f3.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/12322740/39393241-64506480-4af5-11e8-891e-faac9bf86d63.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/12322740/39393248-6e039ae2-4af5-11e8-97f0-60ff4d1bd410.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/12322740/39393251-7808e416-4af5-11e8-8a31-7feb609900cb.png">
+<meta property="og:image" content="https://camo.githubusercontent.com/4d2e1473b24c3e12d2ad6fab3fd6521e5cdac7e7/68747470733a2f2f706963322e7a68696d672e636f6d2f38302f38613730376166663737623837346161633165303631616130623763363337325f68642e6a7067">
+<meta property="og:image" content="https://user-images.githubusercontent.com/12322740/39393327-b9bc9c12-4af6-11e8-8d97-70905a12a9ad.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/12322740/39393403-625c48e0-4af7-11e8-9ce4-2368b4a2ad64.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/12322740/39393407-7bdc8b18-4af7-11e8-9ae2-5f49b1f8bf47.png">
+<meta property="og:image" content="https://camo.githubusercontent.com/7e36c77c0189e3de74c986611d51111c6d96585d/68747470733a2f2f692e696d6775722e636f6d2f4e6a49345059742e706e67">
+<meta property="og:image" content="https://user-images.githubusercontent.com/12322740/39393423-a2ca02aa-4af7-11e8-90cd-54f1755dc970.png">
+<meta property="og:image" content="https://camo.githubusercontent.com/7775f55dcf5d04ede050e14294f2c1fb142e6c36/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f313630302f312a4750347658765733574f3076546267674466757334512e706e67">
+<meta property="og:updated_time" content="2019-02-24T06:49:15.761Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="雯风未动">
-<meta name="twitter:description" content="谈不上的迷茫">
+<meta name="twitter:title" content="React 高效渲染策略">
+<meta name="twitter:description" content="前言 本文基于 react 16.3- 版本，所讨论的都是老版本的生命周期函数。  React 作为一个视图框架，速度已经很快了，并且在 React16 新推出的 Fiber 架构中，通过时间切片及高优先级任务中断来尽快相应用户的操作。尽管如此，React 也并不能揣测出开发者真正的意图，如果开发者的代码没有遵循最佳实践，就容易造成性能上的负担。 高效渲染React 在内部维护了一套虚拟 DOM（">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/b21b1fd1a8b918b3753adce52f19a891f9875203/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323030302f312a4e6e44466d6c765362393965556c50436f716b3951672e706e67">
 
 
 
@@ -132,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="https://dawven.github.io/"/>
+  <link rel="canonical" href="https://dawven.github.io/2019/02/18/React 高效渲染策略/"/>
 
 
 
 
 
-  <title>雯风未动</title>
+  <title>React 高效渲染策略 | 雯风未动</title>
   
 
 
@@ -163,9 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,284 +261,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dawven.github.io/2019/02/23/flutter 环境安装Mac/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="dawven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="雯风未动">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/23/flutter 环境安装Mac/" itemprop="url">flutter 环境安装Mac</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-23T12:54:21+08:00">
-                2019-02-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="下载Flutter-SDK包"><a href="#下载Flutter-SDK包" class="headerlink" title="下载Flutter SDK包"></a>下载Flutter SDK包</h2><p>网址：<a href="https://flutter.io/setup-macos/" target="_blank" rel="noopener">https://flutter.io/setup-macos/</a></p>
-<p>下载之后解压，放置根目录</p>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>由于我用on my zsh，所以在.zshrc配置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">path+=(<span class="string">'/Users/yourName/flutter/bin'</span>)</span><br><span class="line"><span class="keyword">export</span> PATH</span><br></pre></td></tr></table></figure>
-<p>配置完</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure>
-<p>完成这部以后，就算我们flutter的安装工作完成了，但是这还不能进行开发。可以使用命令来检测一下，是否安装完成了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter -h</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/23/flutter 环境安装Mac/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dawven.github.io/2019/02/23/2019学习计划/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="dawven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="雯风未动">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/23/2019学习计划/" itemprop="url">2019学习计划</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-23T10:54:21+08:00">
-                2019-02-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>计算机基础知识</p>
-<ul>
-<li>看完计算机网络教程–自顶向下方法（目前20%）</li>
-</ul>
-<p>react的深入学习</p>
-<ul>
-<li>深入react技术栈（目前看完，差笔记总结）</li>
-<li>源码学习</li>
-<li>学习阿里的umi和dva以及roadhog</li>
-</ul>
-<p>移动端的学习</p>
-<ul>
-<li>flutter</li>
-</ul>
-<p>微信方面的学习</p>
-<ul>
-<li>小程序开发</li>
-<li>公众号开发</li>
-</ul>
-<p>其他知识</p>
-<ul>
-<li>金融</li>
-<li>投资</li>
-<li>贾平凹文集</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -555,9 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/18/React 高效渲染策略/" itemprop="url">React 高效渲染策略</a></h1>
+          <h1 class="post-title" itemprop="name headline">React 高效渲染策略</h1>
         
 
         <div class="post-meta">
@@ -607,9 +343,7 @@
       
 
       
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>本文基于 react 16.3- 版本，所讨论的都是老版本的生命周期函数。</p>
 </blockquote>
 <p>React 作为一个视图框架，速度已经很快了，并且在 React16 新推出的 Fiber 架构中，通过时间切片及高优先级任务中断来尽快相应用户的操作。尽管如此，React 也并不能揣测出开发者真正的意图，如果开发者的代码没有遵循最佳实践，就容易造成性能上的负担。</p>
@@ -867,8 +601,6 @@ if (process.env.NODE_ENV !== 'production') {
 <p><a href="https://www.zhihu.com/question/28016223" target="_blank" rel="noopener">facebook immutable.js 意义何在，使用场景？</a></p>
 <p><a href="http://wuyuying.com/blog/archives/optimizing-react-virtual-dom-explained/" target="_blank" rel="noopener">[译] React 性能优化 - 虚拟 Dom 原理浅析</a></p>
 
-          
-        
       
     </div>
     
@@ -883,281 +615,40 @@ if (process.env.NODE_ENV !== 'production') {
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dawven.github.io/2019/02/15/30 分钟精通 React 新特性 React Hooks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="dawven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="雯风未动">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/15/30 分钟精通 React 新特性 React Hooks/" itemprop="url">30 分钟精通 React 新特性 React Hooks</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-15T13:54:21+08:00">
-                2019-02-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/react/" rel="tag"># react</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <p>你还在为该使用无状态组件（Function）还是有状态组件（Class）而烦恼吗？——拥有了 hooks，你再也不需要写 Class 了，你的所有组件都将是 Function。</p>
-<p>你还在为搞不清使用哪个生命周期钩子函数而日夜难眠吗？——拥有了 Hooks，生命周期钩子函数可以先丢一边了。</p>
-<p>你在还在为组件中的 this 指向而晕头转向吗？——既然 Class 都丢掉了，哪里还有 this？你的人生第一次不再需要面对 this。</p>
-<p>这样看来，说 React Hooks 是今年最劲爆的新特性真的毫不夸张。如果你也对 react 感兴趣，或者正在使用 react 进行项目开发，答应我，请一定抽出至少 30 分钟的时间来阅读本文好吗？所有你需要了解的 React Hooks 的知识点，本文都涉及到了，相信完整读完后你一定会有所收获。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/15/30 分钟精通 React 新特性 React Hooks/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/15/30 分钟精通 React 新特性 React Hooks/" rel="next" title="30 分钟精通 React 新特性 React Hooks">
+                <i class="fa fa-chevron-left"></i> 30 分钟精通 React 新特性 React Hooks
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dawven.github.io/2018/09/04/前端-简历/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="dawven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="雯风未动">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/04/前端-简历/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T21:22:15+08:00">
-                2018-09-04
-              </time>
+              <a href="/2019/02/23/2019学习计划/" rel="prev" title="2019学习计划">
+                2019学习计划 <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><ul>
-<li>手机：15927122432(湖北武汉) </li>
-<li>Email：<a href="mailto:dawviento@gmail.com" target="_blank" rel="noopener">dawviento@gmail.com</a> </li>
-<li><p>微信：hua965714496</p>
-<h1 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h1></li>
-<li><p>庞康华/男/1994 </p>
-</li>
-<li>本科/中国地质大学(武汉)/信息管理专业 </li>
-<li>工作年限：1.5年</li>
-<li>个人博客：<a href="https://dawven.github.io">https://dawven.github.io</a> </li>
-<li><p>Github：<a href="https://github.com/dawven" target="_blank" rel="noopener">https://github.com/dawven</a> </p>
-</li>
-<li><p>期望职位：web前端工程师</p>
-</li>
-<li>期望薪资：税前月薪15k~20k，特别喜欢的公司可例外</li>
-<li>期望城市：广州、深圳</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/04/前端-简历/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1167,649 +658,11 @@ if (process.env.NODE_ENV !== 'production') {
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dawven.github.io/2018/07/21/React 中 setState 使用详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="dawven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="雯风未动">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/21/React 中 setState 使用详解/" itemprop="url">React 中 setState 使用详解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-21T10:54:21+08:00">
-                2018-07-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>React 中 setState 使用的<a href="http://www.php.cn/code/10182.html" target="_blank" rel="noopener">注意事项</a>有哪些，下面就是实战案例，一起来看一下。</p>
-<h2 id="抛出问题"><a href="#抛出问题" class="headerlink" title="抛出问题"></a>抛出问题</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  contructor () &#123;</span><br><span class="line">    <span class="keyword">super</span>()</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      value: <span class="number">0</span>,</span><br><span class="line">      index: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount () &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: <span class="keyword">this</span>.state.value + <span class="number">1</span>&#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.state.value) <span class="comment">// 第一次输出</span></span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: <span class="keyword">this</span>.state.value + <span class="number">1</span>&#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.state.value) <span class="comment">// 第二次输出</span></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: <span class="keyword">this</span>.state.value + <span class="number">1</span>&#125;)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.state.value) <span class="comment">// 第三次输出</span></span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: <span class="keyword">this</span>.state.value + <span class="number">1</span>&#125;)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.state.value) <span class="comment">// 第四次输出</span></span><br><span class="line">    &#125;, <span class="number">0</span>)；</span><br><span class="line">        <span class="keyword">this</span>.refs.button.addEventListener(<span class="string">'click'</span>, <span class="keyword">this</span>.click)</span><br><span class="line">  &#125;</span><br><span class="line">  click = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: <span class="keyword">this</span>.state.index + <span class="number">1</span>&#125;)</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: <span class="keyword">this</span>.state.index + <span class="number">1</span>&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;p&gt;&lt;span&gt;value: &#123;this.state.value&#125;index: &#123;this.props.index&#125;&lt;/span&gt;</span><br><span class="line">        &lt;button ref=<span class="string">"button"</span> onClick=&#123;<span class="keyword">this</span>.click&#125;&gt;点击&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>p&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/21/React 中 setState 使用详解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dawven.github.io/2018/07/20/doctype（文档类型）的作用是什么/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="dawven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="雯风未动">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/20/doctype（文档类型）的作用是什么/" itemprop="url">doctype（文档类型）的作用是什么</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-20T10:54:21+08:00">
-                2018-07-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>2000 年 1 月 5 日，微软发表声明要发布 「IE5 for Mac」。</p>
-<p>我们先不要惊叹 IE 居然开发过 Mac 版本，也不要惊讶 Mac 版本的 IE2 到 IE5 存在了长达十年，更不要惊呼 IE for Mac 作为 Mac 的默认浏览器存在了五六年的时间。</p>
-<p>以当时的眼光来说，那个时候的 IE5 非常先进，它完全实现了当时最新的 html 标准「HTML 4.0」。但是随之而来的问题是，对于一些旧的网页却不能正确的呈现（或者说，他们是被正确渲染了），那些网页是按照当时占统治地位的浏览器的渲染模式来渲染的，IE5 肯定不能就这样发布。</p>
-<p>微软想到了一个解决方案，没错，这就是 「DOCTYPE」。使用新标准的页面可以在 <code>&lt;html&gt;</code> 之前加上 doctype 来激活新的标准模式。很快，各个浏览器都采用了这个方案，使用「混杂模式（Quirks）」和「标准模式（Standard Mode）」来进行渲染，但是实际上很多网页在使用标准模式时，却是基于某种混杂模式来写的，于是 Mozilla 1.1 创造了「准标准模式（Almost Standard Mode）」。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/20/doctype（文档类型）的作用是什么/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dawven.github.io/2018/06/21/渐进增强和优雅降级/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="dawven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="雯风未动">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/21/渐进增强和优雅降级/" itemprop="url">你能描述一下渐进增强和优雅降级之间的不同吗?</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-21T10:54:21+08:00">
-                2018-06-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ul>
-<li><p>渐进增强(progressive enhancement)：针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。</p>
-</li>
-<li><p>优雅降级(graceful degradation)：一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/21/渐进增强和优雅降级/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dawven.github.io/2018/06/12/leetCode-1-两数之和/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="dawven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="雯风未动">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/12/leetCode-1-两数之和/" itemprop="url">leetCode-1-两数之和</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T10:54:21+08:00">
-                2018-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。</p>
-<p>你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。</p>
-<p>示例:</p>
-<p>给定 nums = [2, 7, 11, 15], target = 9</p>
-<p>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/12/leetCode-1-两数之和/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dawven.github.io/2018/06/11/reflow 和 repaint 引发的性能问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="dawven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="雯风未动">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/11/reflow 和 repaint 引发的性能问题/" itemprop="url">reflow 和 repaint 引发的性能问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T10:54:21+08:00">
-                2018-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>本文由 <a href="http://ksria.com/simpread/" target="_blank" rel="noopener">简悦 SimpRead</a> 转码， 原文地址 <a href="https://juejin.im/post/5a9372895188257a6b06132e" target="_blank" rel="noopener">https://juejin.im/post/5a9372895188257a6b06132e</a></p>
-</blockquote>
-<blockquote>
-<p>reflow 和 repaint 在 pc 端只要不是怀有明知山有虎，偏向虎山行的心态写代码，这两货几乎不会引发性能问题， 但是移动端的渲染能力和 pc 端差了不止一个大截，一个不小心 reflow 和 repaint 就成了移动端的 “性能杀手”。所以了解 reflow 和 repaint 也是很有必要的，在考量页面性能的时候分析 reflow 和 repaint 也算是一个切入点。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/11/reflow 和 repaint 引发的性能问题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
 
 
           </div>
@@ -1817,6 +670,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -1837,8 +694,17 @@ if (process.env.NODE_ENV !== 'production') {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -1891,6 +757,22 @@ if (process.env.NODE_ENV !== 'production') {
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高效渲染"><span class="nav-number">2.</span> <span class="nav-text">高效渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shouldComponentUpdate"><span class="nav-number">2.1.</span> <span class="nav-text">shouldComponentUpdate</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#手动控制"><span class="nav-number">2.1.1.</span> <span class="nav-text">手动控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pureComponent"><span class="nav-number">2.1.2.</span> <span class="nav-text">pureComponent</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stateless-function"><span class="nav-number">2.2.</span> <span class="nav-text">stateless function</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#stateless-component-vs-PureComponent"><span class="nav-number">2.2.1.</span> <span class="nav-text">stateless component vs PureComponent</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免-props-不必要的更改"><span class="nav-number">2.3.</span> <span class="nav-text">避免 props 不必要的更改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不要在-render-中重新定义函数"><span class="nav-number">2.3.1.</span> <span class="nav-text">不要在 render 中重新定义函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用稳定的-key"><span class="nav-number">2.3.2.</span> <span class="nav-text">使用稳定的 key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#store-的设计"><span class="nav-number">2.3.3.</span> <span class="nav-text">store 的设计</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#范式化"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">范式化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#state-vs-store"><span class="nav-number">2.3.3.2.</span> <span class="nav-text">state vs store</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最小化变动"><span class="nav-number">2.3.4.</span> <span class="nav-text">最小化变动</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#navie-list"><span class="nav-number">2.3.4.1.</span> <span class="nav-text">navie list</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用-shouldComponentUpdate-来避免重渲染"><span class="nav-number">2.3.4.2.</span> <span class="nav-text">用 shouldComponentUpdate 来避免重渲染</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#让未被修改的组件对改变无感知"><span class="nav-number">2.3.4.3.</span> <span class="nav-text">让未被修改的组件对改变无感知</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#范式化-store"><span class="nav-number">2.3.4.4.</span> <span class="nav-text">范式化 store</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#react-redux"><span class="nav-number">2.3.4.5.</span> <span class="nav-text">react-redux</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#reselect"><span class="nav-number">2.3.4.6.</span> <span class="nav-text">reselect</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#immutable"><span class="nav-number">2.3.4.7.</span> <span class="nav-text">immutable</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#反思"><span class="nav-number">2.3.4.8.</span> <span class="nav-text">反思</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能检测"><span class="nav-number">3.</span> <span class="nav-text">性能检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rect-perf"><span class="nav-number">3.1.</span> <span class="nav-text">?rect_perf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#why-did-you-update"><span class="nav-number">3.2.</span> <span class="nav-text">why-did-you-update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Highlight-updates-with-the-React-Developer-Tools"><span class="nav-number">3.3.</span> <span class="nav-text">Highlight updates with the React Developer Tools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试线上版本"><span class="nav-number">3.4.</span> <span class="nav-text">调试线上版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -2004,10 +886,10 @@ if (process.env.NODE_ENV !== 'production') {
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
