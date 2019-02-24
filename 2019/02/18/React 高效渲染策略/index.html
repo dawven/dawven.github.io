@@ -94,13 +94,13 @@
 
 
 
-<meta name="description" content="前言 本文基于 react 16.3- 版本，所讨论的都是老版本的生命周期函数。  React 作为一个视图框架，速度已经很快了，并且在 React16 新推出的 Fiber 架构中，通过时间切片及高优先级任务中断来尽快相应用户的操作。尽管如此，React 也并不能揣测出开发者真正的意图，如果开发者的代码没有遵循最佳实践，就容易造成性能上的负担。 高效渲染React 在内部维护了一套虚拟 DOM（">
+<meta name="description" content="前言 本文基于 react 16.3- 版本，所讨论的都是老版本的生命周期函数。  React 作为一个视图框架，速度已经很快了，并且在 React16 新推出的 Fiber 架构中，通过时间切片及高优先级任务中断来尽快相应用户的操作。尽管如此，React 也并不能揣测出开发者真正的意图，如果开发者的代码没有遵循最佳实践，就容易造成性能上的负担。">
 <meta name="keywords" content="react">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React 高效渲染策略">
 <meta property="og:url" content="https://dawven.github.io/2019/02/18/React 高效渲染策略/index.html">
 <meta property="og:site_name" content="雯风未动">
-<meta property="og:description" content="前言 本文基于 react 16.3- 版本，所讨论的都是老版本的生命周期函数。  React 作为一个视图框架，速度已经很快了，并且在 React16 新推出的 Fiber 架构中，通过时间切片及高优先级任务中断来尽快相应用户的操作。尽管如此，React 也并不能揣测出开发者真正的意图，如果开发者的代码没有遵循最佳实践，就容易造成性能上的负担。 高效渲染React 在内部维护了一套虚拟 DOM（">
+<meta property="og:description" content="前言 本文基于 react 16.3- 版本，所讨论的都是老版本的生命周期函数。  React 作为一个视图框架，速度已经很快了，并且在 React16 新推出的 Fiber 架构中，通过时间切片及高优先级任务中断来尽快相应用户的操作。尽管如此，React 也并不能揣测出开发者真正的意图，如果开发者的代码没有遵循最佳实践，就容易造成性能上的负担。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://camo.githubusercontent.com/b21b1fd1a8b918b3753adce52f19a891f9875203/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323030302f312a4e6e44466d6c765362393965556c50436f716b3951672e706e67">
 <meta property="og:image" content="https://user-images.githubusercontent.com/12322740/39393234-57506faa-4af5-11e8-8838-f9ed660f86f3.png">
@@ -114,10 +114,10 @@
 <meta property="og:image" content="https://camo.githubusercontent.com/7e36c77c0189e3de74c986611d51111c6d96585d/68747470733a2f2f692e696d6775722e636f6d2f4e6a49345059742e706e67">
 <meta property="og:image" content="https://user-images.githubusercontent.com/12322740/39393423-a2ca02aa-4af7-11e8-90cd-54f1755dc970.png">
 <meta property="og:image" content="https://camo.githubusercontent.com/7775f55dcf5d04ede050e14294f2c1fb142e6c36/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f313630302f312a4750347658765733574f3076546267674466757334512e706e67">
-<meta property="og:updated_time" content="2019-02-24T06:49:15.761Z">
+<meta property="og:updated_time" content="2019-02-24T06:51:09.310Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React 高效渲染策略">
-<meta name="twitter:description" content="前言 本文基于 react 16.3- 版本，所讨论的都是老版本的生命周期函数。  React 作为一个视图框架，速度已经很快了，并且在 React16 新推出的 Fiber 架构中，通过时间切片及高优先级任务中断来尽快相应用户的操作。尽管如此，React 也并不能揣测出开发者真正的意图，如果开发者的代码没有遵循最佳实践，就容易造成性能上的负担。 高效渲染React 在内部维护了一套虚拟 DOM（">
+<meta name="twitter:description" content="前言 本文基于 react 16.3- 版本，所讨论的都是老版本的生命周期函数。  React 作为一个视图框架，速度已经很快了，并且在 React16 新推出的 Fiber 架构中，通过时间切片及高优先级任务中断来尽快相应用户的操作。尽管如此，React 也并不能揣测出开发者真正的意图，如果开发者的代码没有遵循最佳实践，就容易造成性能上的负担。">
 <meta name="twitter:image" content="https://camo.githubusercontent.com/b21b1fd1a8b918b3753adce52f19a891f9875203/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323030302f312a4e6e44466d6c765362393965556c50436f716b3951672e706e67">
 
 
@@ -346,7 +346,7 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>本文基于 react 16.3- 版本，所讨论的都是老版本的生命周期函数。</p>
 </blockquote>
-<p>React 作为一个视图框架，速度已经很快了，并且在 React16 新推出的 Fiber 架构中，通过时间切片及高优先级任务中断来尽快相应用户的操作。尽管如此，React 也并不能揣测出开发者真正的意图，如果开发者的代码没有遵循最佳实践，就容易造成性能上的负担。</p>
+<p>React 作为一个视图框架，速度已经很快了，并且在 React16 新推出的 Fiber 架构中，通过时间切片及高优先级任务中断来尽快相应用户的操作。尽管如此，React 也并不能揣测出开发者真正的意图，如果开发者的代码没有遵循最佳实践，就容易造成性能上的负担。<br><a id="more"></a></p>
 <h2 id="高效渲染"><a href="#高效渲染" class="headerlink" title="高效渲染"></a>高效渲染</h2><p>React 在内部维护了一套虚拟 DOM（VDOM），在内部维护着一颗 VDOM 树，这颗 VDOM 树映射到浏览器真实的 DOM 树，React 通过更新 VDOM 树来对真实 DOM 更新，VDOM 是 plain object 所以很明显操作 VDOM 的开销要比操作真实 DOM 快得多，再加上 React 内部的 reconciler，React 会在 reconsilation 之后最小化的进行 VDOM 的更新，再 patch 到真实 DOM 上最终完成用户看得到的更新。<br>但是 React 不是万能的，当我们更新一个组件时，整个 reconciliation 会经过如下阶段（并不是完整的，但是会经过）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">组件的 props/state 更改(开发者控制) -&gt; shouldComponentUpdate（开发者控制）-&gt; 计算 VDOM 的更新（React 的 diff 算法会计算出最小化的更新）-&gt; 更新真实 DOM (React 控制)</span><br></pre></td></tr></table></figure>
 <p>这几个箭头，每个箭头都是 YES or NO，返回 NO 就会中断后面的流程。每一步都会带来开销，所以对不需要更新的元素，我们一定要尽早中断这个流程，作为开发者能控制的就是第一个和第二个箭头。即是否传递新的 props/state，和 shouldComponentUpdate 的返回值控制。</p>
