@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="网页性能最大因素是浏览器的重绘（reflow）和重排版（repaint）。React背后的 Virtual Dom就是尽可能地减少浏览器的重绘和重排版。 从react的渲染过程来看，如何防止不必要的渲染可能是最需要去解决的问题。然而针对这个问题，react官方提供了一个便捷的方法来解决，那就是pureRender。 1.纯函数要理解pureRender的pure，还要从函数式编程的基本概念“纯函数">
+<meta name="description" content="网页性能最大因素是浏览器的重绘（reflow）和重排版（repaint）。React背后的 Virtual Dom就是尽可能地减少浏览器的重绘和重排版。 从react的渲染过程来看，如何防止不必要的渲染可能是最需要去解决的问题。然而针对这个问题，react官方提供了一个便捷的方法来解决，那就是pureRender。">
 <meta name="keywords" content="react、组件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="组件性能优化">
 <meta property="og:url" content="https://dawven.github.io/2019/03/24/组件性能优化/index.html">
 <meta property="og:site_name" content="雯风未动">
-<meta property="og:description" content="网页性能最大因素是浏览器的重绘（reflow）和重排版（repaint）。React背后的 Virtual Dom就是尽可能地减少浏览器的重绘和重排版。 从react的渲染过程来看，如何防止不必要的渲染可能是最需要去解决的问题。然而针对这个问题，react官方提供了一个便捷的方法来解决，那就是pureRender。 1.纯函数要理解pureRender的pure，还要从函数式编程的基本概念“纯函数">
+<meta property="og:description" content="网页性能最大因素是浏览器的重绘（reflow）和重排版（repaint）。React背后的 Virtual Dom就是尽可能地减少浏览器的重绘和重排版。 从react的渲染过程来看，如何防止不必要的渲染可能是最需要去解决的问题。然而针对这个问题，react官方提供了一个便捷的方法来解决，那就是pureRender。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-24T08:40:22.854Z">
+<meta property="og:updated_time" content="2019-03-24T08:43:04.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组件性能优化">
-<meta name="twitter:description" content="网页性能最大因素是浏览器的重绘（reflow）和重排版（repaint）。React背后的 Virtual Dom就是尽可能地减少浏览器的重绘和重排版。 从react的渲染过程来看，如何防止不必要的渲染可能是最需要去解决的问题。然而针对这个问题，react官方提供了一个便捷的方法来解决，那就是pureRender。 1.纯函数要理解pureRender的pure，还要从函数式编程的基本概念“纯函数">
+<meta name="twitter:description" content="网页性能最大因素是浏览器的重绘（reflow）和重排版（repaint）。React背后的 Virtual Dom就是尽可能地减少浏览器的重绘和重排版。 从react的渲染过程来看，如何防止不必要的渲染可能是最需要去解决的问题。然而针对这个问题，react官方提供了一个便捷的方法来解决，那就是pureRender。">
 
 
 
@@ -332,6 +332,7 @@
       
         <p>网页性能最大因素是浏览器的重绘（reflow）和重排版（repaint）。React背后的 Virtual Dom就是尽可能地减少浏览器的重绘和重排版。</p>
 <p>从react的渲染过程来看，如何防止不必要的渲染可能是最需要去解决的问题。然而针对这个问题，react官方提供了一个便捷的方法来解决，那就是pureRender。</p>
+<a id="more"></a>
 <h3 id="1-纯函数"><a href="#1-纯函数" class="headerlink" title="1.纯函数"></a>1.纯函数</h3><p>要理解pureRender的pure，还要从函数式编程的基本概念“纯函数”讲起来。“纯函数”构成三大原则：</p>
 <ul>
 <li>给定相同的输入，它总是返回相同的输出；</li>
