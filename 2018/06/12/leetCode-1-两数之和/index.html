@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="雯风未动">
 <meta property="og:description" content="给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。 你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。 示例: 给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-04T13:52:48.002Z">
+<meta property="og:updated_time" content="2019-05-07T01:53:34.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetCode-1-两数之和">
 <meta name="twitter:description" content="给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。 你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。 示例: 给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]">
@@ -258,7 +258,7 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-tags" itemscope itemtype="http://schema.org/Article">
   
   
   
@@ -336,9 +336,10 @@
 <p>给定 nums = [2, 7, 11, 15], target = 9</p>
 <p>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]<br><a id="more"></a><br>用哈希表，存进去，然后检测存不存在，存在就输出对应key，放到数组里，得到答案，</p>
 <p>JavaScript 中其实每个 object 对象就是一个简单的哈希表，具体可到stackoverflow看这个问题：<a href="https://stackoverflow.com/questions/8877666/how-is-a-javascript-hash-map-implemented" target="_blank" rel="noopener">How is a JavaScript hash map implemented?
-</a>  </p>
+</a></p>
 <p>时间复杂度和空间复杂度均为O(n);</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; nums</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; target</span></span><br><span class="line"><span class="comment"> * @return &#123;number[]&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> twoSum = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> item = target - nums[i];</span><br><span class="line">        <span class="keyword">if</span> (map.has(item))&#123;</span><br><span class="line">            <span class="keyword">var</span> array =[map.get(item), i];</span><br><span class="line">            <span class="keyword">return</span> array;</span><br><span class="line">        &#125;</span><br><span class="line">        map.set(nums[i], i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(twoSum([<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>], <span class="number">9</span>));</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -461,7 +462,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
