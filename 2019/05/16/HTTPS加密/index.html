@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="面试题," />
+  <meta name="keywords" content="SSL,HTTPS," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="2000 年 1 月 5 日，微软发表声明要发布 「IE5 for Mac」。 我们先不要惊叹 IE 居然开发过 Mac 版本，也不要惊讶 Mac 版本的 IE2 到 IE5 存在了长达十年，更不要惊呼 IE for Mac 作为 Mac 的默认浏览器存在了五六年的时间。 以当时的眼光来说，那个时候的 IE5 非常先进，它完全实现了当时最新的 html 标准「HTML 4.0」。但是随之而来的问题">
-<meta name="keywords" content="面试题">
+<meta name="description" content="传输层安全安全套接层（Secure Socket Layer）协议，简称SSL，还有一个传输层安全（Transport Layer Security）协议， 简称TLS. 这里主要讲这个SSL，这些协议的目标之一是提供服务器和客户之间的认证、数据机密性和数据完整性。利用TCP服务的应用层的客户/服务器程序，可以将它们的数据封装在SSL报文（HTTPS）中。如果服务器和客户机具有运行SSL或者TLS">
+<meta name="keywords" content="SSL,HTTPS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="doctype（文档类型）的作用是什么">
-<meta property="og:url" content="https://dawven.github.io/2018/07/20/doctype（文档类型）的作用是什么/index.html">
+<meta property="og:title" content="HTTPS加密">
+<meta property="og:url" content="https://dawven.github.io/2019/05/16/HTTPS加密/index.html">
 <meta property="og:site_name" content="雯风未动">
-<meta property="og:description" content="2000 年 1 月 5 日，微软发表声明要发布 「IE5 for Mac」。 我们先不要惊叹 IE 居然开发过 Mac 版本，也不要惊讶 Mac 版本的 IE2 到 IE5 存在了长达十年，更不要惊呼 IE for Mac 作为 Mac 的默认浏览器存在了五六年的时间。 以当时的眼光来说，那个时候的 IE5 非常先进，它完全实现了当时最新的 html 标准「HTML 4.0」。但是随之而来的问题">
+<meta property="og:description" content="传输层安全安全套接层（Secure Socket Layer）协议，简称SSL，还有一个传输层安全（Transport Layer Security）协议， 简称TLS. 这里主要讲这个SSL，这些协议的目标之一是提供服务器和客户之间的认证、数据机密性和数据完整性。利用TCP服务的应用层的客户/服务器程序，可以将它们的数据封装在SSL报文（HTTPS）中。如果服务器和客户机具有运行SSL或者TLS">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-07T01:53:34.321Z">
+<meta property="og:updated_time" content="2019-05-16T15:40:44.381Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="doctype（文档类型）的作用是什么">
-<meta name="twitter:description" content="2000 年 1 月 5 日，微软发表声明要发布 「IE5 for Mac」。 我们先不要惊叹 IE 居然开发过 Mac 版本，也不要惊讶 Mac 版本的 IE2 到 IE5 存在了长达十年，更不要惊呼 IE for Mac 作为 Mac 的默认浏览器存在了五六年的时间。 以当时的眼光来说，那个时候的 IE5 非常先进，它完全实现了当时最新的 html 标准「HTML 4.0」。但是随之而来的问题">
+<meta name="twitter:title" content="HTTPS加密">
+<meta name="twitter:description" content="传输层安全安全套接层（Secure Socket Layer）协议，简称SSL，还有一个传输层安全（Transport Layer Security）协议， 简称TLS. 这里主要讲这个SSL，这些协议的目标之一是提供服务器和客户之间的认证、数据机密性和数据完整性。利用TCP服务的应用层的客户/服务器程序，可以将它们的数据封装在SSL报文（HTTPS）中。如果服务器和客户机具有运行SSL或者TLS">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://dawven.github.io/2018/07/20/doctype（文档类型）的作用是什么/"/>
+  <link rel="canonical" href="https://dawven.github.io/2019/05/16/HTTPS加密/"/>
 
 
 
 
 
-  <title>doctype（文档类型）的作用是什么 | 雯风未动</title>
+  <title>HTTPS加密 | 雯风未动</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dawven.github.io/2018/07/20/doctype（文档类型）的作用是什么/">
+    <link itemprop="mainEntityOfPage" href="https://dawven.github.io/2019/05/16/HTTPS加密/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="dawven">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">doctype（文档类型）的作用是什么</h1>
+          <h1 class="post-title" itemprop="name headline">HTTPS加密</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-20T10:54:21+08:00">
-                2018-07-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-16T13:54:21+08:00">
+                2019-05-16
               </time>
             
 
@@ -330,28 +330,29 @@
       
 
       
-        <p>2000 年 1 月 5 日，微软发表声明要发布 「IE5 for Mac」。</p>
-<p>我们先不要惊叹 IE 居然开发过 Mac 版本，也不要惊讶 Mac 版本的 IE2 到 IE5 存在了长达十年，更不要惊呼 IE for Mac 作为 Mac 的默认浏览器存在了五六年的时间。</p>
-<p>以当时的眼光来说，那个时候的 IE5 非常先进，它完全实现了当时最新的 html 标准「HTML 4.0」。但是随之而来的问题是，对于一些旧的网页却不能正确的呈现（或者说，他们是被正确渲染了），那些网页是按照当时占统治地位的浏览器的渲染模式来渲染的，IE5 肯定不能就这样发布。</p>
-<p>微软想到了一个解决方案，没错，这就是 「DOCTYPE」。使用新标准的页面可以在 <code>&lt;html&gt;</code> 之前加上 doctype 来激活新的标准模式。很快，各个浏览器都采用了这个方案，使用「混杂模式（Quirks）」和「标准模式（Standard Mode）」来进行渲染，但是实际上很多网页在使用标准模式时，却是基于某种混杂模式来写的，于是 Mozilla 1.1 创造了「准标准模式（Almost Standard Mode）」。<br><a id="more"></a><br>总结起来，混杂模式是不符合 Web 标准的模式，准标准模式是几乎要符合标准的模式，标准模式是符合标准的模式。</p>
-<p>我们可以使用不同的 doctype 来激活不同的模式。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">No doctype</span><br></pre></td></tr></table></figure>
-<p>除了上面这些还有非常多的 doctype 类型，而他们在不同的浏览器中又会激活不同的模式，以我的经验而言，现在最常用的就是这两个：</p>
-<p>第一种是 html5 的 doctype，激活标准模式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br></pre></td></tr></table></figure>
-<p>第二种是 XHTML 1.0 用于过渡的 doctype，它会激活准标准模式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>可以说，这两种 doctype 占了整个互联网页面的绝大部分，现在的网页除了第一种就是第二种。这两种 doctype 的背后也有很多故事可以讲。</p>
-<h4 id="什么是-XHTML"><a href="#什么是-XHTML" class="headerlink" title="什么是 XHTML"></a>什么是 XHTML</h4><p>首先我们先来明确一点，什么是 XHTML？</p>
-<p>W3C 发布了 HTML4 之后转向了 XHTML，「XHTML is the future」。XHTML 1.0 并没有在 HTML4 的基础上增加新的特性，而是用 XML 将 HTML4 进行了重写。这次重写对 HTML 进行了严格的限制，比如要使用 <code>&lt;br/&gt;</code> 而不是 <code>&lt;br&gt;</code>，要在属性值上使用双引号。而一旦遇到一个错误就要立刻停止解析，并显示错误信息。而当时的页面绝大多数都不可能满足这种严格的标准，所以开发者们也使用了这种新的语法，但是却是以 text/html 的形式来发布的。</p>
-<p>声明自己使用的是 XHTML 1.0 的方式就是使用 doctype，</p>
-<p>而随后发布的 XHTML 1.1 却没有得到广泛的支持，因为它只允许以 application/xhtml+xml 的形式发布，所以 WEB 开发者们就直接忽略掉了。</p>
-<h4 id="HTML5-的-doctype"><a href="#HTML5-的-doctype" class="headerlink" title="HTML5 的 doctype"></a>HTML5 的 doctype</h4><p>为什么 html5 的 doctype 这么简单呢？因为 HTML5 不再是基于 SGML 的语言，而 doctype 只是用来激活模式的。</p>
-<p>HTML5 之前，HTML 都是用 SGML 来书写的，DOCTYPE 则用来声明文档类型，它可以告诉 SGML parser 使用什么 DTD 来解析文档。所以到了 HTML5，根本就没有对应的 DTD，也就没有后面一串异常复杂的表述了。</p>
-<p>那么，为什么 HTML5 不再是 SGML 了呢？</p>
-<p>我想它的原因可能是这样：SGML 需要在 DTD 中定义好标签和属性，但是 HTML5 中要允许自定的标签和属性的，原来的框架太过束缚，它需要更加广大的范围来放飞自己。</p>
-<h4 id="什么是-SGML"><a href="#什么是-SGML" class="headerlink" title="什么是 SGML"></a>什么是 SGML</h4><p>它是可以定义标签语言的元语言，比如 HTML5 之前的版本都是拿 SGML 来写的。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>回到主题，doctype 有什么作用，它的作用就是用来激活各种渲染模式啊。</p>
+        <h3 id="传输层安全"><a href="#传输层安全" class="headerlink" title="传输层安全"></a>传输层安全</h3><p>安全套接层（Secure Socket Layer）协议，简称SSL，还有一个传输层安全（Transport Layer Security）协议， 简称TLS.</p>
+<p>这里主要讲这个SSL，这些协议的目标之一是提供服务器和客户之间的认证、数据机密性和数据完整性。利用TCP服务的应用层的客户/服务器程序，可以将它们的数据封装在SSL报文（HTTPS）中。如果服务器和客户机具有运行SSL或者TLS程序的能力，那么客户机可以使用URLhttps://代替http://，以允许HTTP消息封装在SSL或者TLS报文中。安全传输</p>
+<a id="more"></a>
+<h3 id="SSL结构"><a href="#SSL结构" class="headerlink" title="SSL结构"></a>SSL结构</h3><h4 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h4><p>SSL为从应用层接收到的数据提供多种服务。</p>
+<ul>
+<li>分段。首先，SSL把数据划分为等于或小于2的14次方个字节的块。</li>
+<li>压缩。客户和服务器之间协商一种无损压缩方法，同时利用该方法对每数据的每个分段压缩。这种服务时可选的。</li>
+<li>消息完整性。为了保护数据的完整性，SSL使用一种密钥散列函数构建一个MAC（消息认证码）。‘</li>
+<li>保密性。为了提供保密性，原始数据和MAC利用对此密钥密码进行加密。</li>
+<li>成帧。给被加密的有效载荷增加一个头部，然后将它传递给一个可靠的传输层协议。</li>
+</ul>
+<h4 id="密钥交换算法"><a href="#密钥交换算法" class="headerlink" title="密钥交换算法"></a>密钥交换算法</h4><p>为了交换一个认证和保密的算法，客户和服务器都需要一个安全秘密集。但是，为了创建这些秘密，双方之间必须建立一个<strong>预主密码</strong>。SSL为建立这种预主密码定义了几种密钥交换方法</p>
+<h4 id="加密-解密算法"><a href="#加密-解密算法" class="headerlink" title="加密/解密算法"></a>加密/解密算法</h4><p>客户和服务器也需要就加密和解密算法集成达成一致</p>
+<h4 id="散列算法"><a href="#散列算法" class="headerlink" title="散列算法"></a>散列算法</h4><p>SSL利用散列算法提供消息的完整性（消息认证）。为了这个目的，SSL定义了几种散列算法</p>
+<h4 id="密码组"><a href="#密码组" class="headerlink" title="密码组"></a>密码组</h4><p>对于每个SSL对话中，密钥交换、散列和加密算法的组合定义了一个密码组</p>
+<h4 id="压缩算法"><a href="#压缩算法" class="headerlink" title="压缩算法"></a>压缩算法</h4><p>压缩可选，所以可以使用任意种压缩算法</p>
+<h4 id="密码参数生成"><a href="#密码参数生成" class="headerlink" title="密码参数生成"></a>密码参数生成</h4><p>这块比较难，只知道为了实现消息的完整性和保密性，SSL需要6个密码秘密信息：4个密钥和两个IV(初始化向量)。后面是精力再深入，这篇就简单了解一下SSL</p>
+<h4 id="会话与连接"><a href="#会话与连接" class="headerlink" title="会话与连接"></a>会话与连接</h4><p>SSL中的会话与连接不同。会话是服务器和客户机之间的一个关联。在一个会话建立之后，双方就具有了公共的信息，如会话标识符、相互认证的证书、压缩方法、密码组和用于生产密钥进行加密的主密码。</p>
+<p>对于两个交换数据的实体店来说，会话的建立是必须的，单这并不足够；它们需要在它们自己之间建立一个连接。两个实体交换两个随机数，利用主密码创建密钥和参数。这些密钥和参数用于对交换的消息进行认证和隐私保护。</p>
+<p>一个会话可能包含多个连接。双方之间的一个连接可以被终止或在同一个会话中被重新建立。当一个连接被终止时，双方也可以终止这个会话，但这不是强制性的。一个会话可以被挂起或恢复。</p>
+<h4 id="四个协议"><a href="#四个协议" class="headerlink" title="四个协议"></a>四个协议</h4><p>SSL怎么完成上面这些任务的？SSL在应用层和传输层之间定义了4个协议</p>
+<p>握手协议、改变密码规格协议、警告协议、记录协议。</p>
+<p>记录协议是承载体。它携带来自于其他三个协议的消息，也携带来自于应用层的数据。对于传输层（通常是TCP）来说，来自记录协议的消息是它的有效载荷。握手协议为记录协议提供安参数。它建立一个密码集，并提供密钥和安全参数。如果需要，它也实施客户机认证服务器和服务器认证客户机。改变密码规格协议用于示意安全密码信息准备就绪。警告协议用于报告非正常状态</p>
 
       
     </div>
@@ -369,7 +370,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/面试题/" rel="tag"># 面试题</a>
+            <a href="/tags/SSL/" rel="tag"># SSL</a>
+          
+            <a href="/tags/HTTPS/" rel="tag"># HTTPS</a>
           
         </div>
       
@@ -382,8 +385,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/21/渐进增强和优雅降级/" rel="next" title="你能描述一下渐进增强和优雅降级之间的不同吗?">
-                <i class="fa fa-chevron-left"></i> 你能描述一下渐进增强和优雅降级之间的不同吗?
+              <a href="/2019/03/24/组件性能优化/" rel="next" title="组件性能优化">
+                <i class="fa fa-chevron-left"></i> 组件性能优化
               </a>
             
           </div>
@@ -391,10 +394,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/21/React 中 setState 使用详解/" rel="prev" title="React 中 setState 使用详解">
-                React 中 setState 使用详解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -519,7 +518,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是-XHTML"><span class="nav-number">1.</span> <span class="nav-text">什么是 XHTML</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML5-的-doctype"><span class="nav-number">2.</span> <span class="nav-text">HTML5 的 doctype</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是-SGML"><span class="nav-number">3.</span> <span class="nav-text">什么是 SGML</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#传输层安全"><span class="nav-number">1.</span> <span class="nav-text">传输层安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSL结构"><span class="nav-number">2.</span> <span class="nav-text">SSL结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务"><span class="nav-number">2.1.</span> <span class="nav-text">服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#密钥交换算法"><span class="nav-number">2.2.</span> <span class="nav-text">密钥交换算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加密-解密算法"><span class="nav-number">2.3.</span> <span class="nav-text">加密/解密算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列算法"><span class="nav-number">2.4.</span> <span class="nav-text">散列算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#密码组"><span class="nav-number">2.5.</span> <span class="nav-text">密码组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#压缩算法"><span class="nav-number">2.6.</span> <span class="nav-text">压缩算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#密码参数生成"><span class="nav-number">2.7.</span> <span class="nav-text">密码参数生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#会话与连接"><span class="nav-number">2.8.</span> <span class="nav-text">会话与连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四个协议"><span class="nav-number">2.9.</span> <span class="nav-text">四个协议</span></a></li></ol></li></ol></div>
             
 
           </div>
